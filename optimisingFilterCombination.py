@@ -64,7 +64,7 @@ def loadFilterData(E_MeV,preFilter=False):
             IPresponse = filterAttenuation*IPsensitivity
             responseFunctions.append(IPresponse)
     else:
-        print 'Cannon design not specified!'
+        print('Cannon design not specified!')
     if(cannonType=='singleChannel' and preFilter):
         ch = np.arange(1,numChannels,1)
     else:
@@ -148,7 +148,7 @@ if(1):
     normed   = False
     plotting = True
 
-    fileName = 'BMXS'
+    fileName = 'TAW_v1'
     figName  = fileName+'.png'
     if(hybrid):
         txtName = fileName+'_hybrid.txt'
@@ -189,8 +189,8 @@ if(1):
     tempErrors  = []
     engyErrors  = []
     np.random.seed(0)
-    for i in range(250):
-        print i
+    for i in range(1):
+        print(i)
         """ Make fake signals and add random noise """
         IPsigsRaw = imagePlateResponses(E_MeV,A_base,T_MeV,responseFunctions,ch)
         # IPsignals = np.array([IPsig for IPsig in IPsigsRaw])
@@ -275,8 +275,8 @@ if(1):
             # print ' '
         except Exception as ExceptErr:
             crazyFig = False
-            print ExceptErr
-            print "Could not find minimum!"
+            print(ExceptErr)
+            print("Could not find minimum!")
 
         fittedTemps.append(bestTemp)
         fittedEngys.append(bestFrac)
@@ -310,9 +310,9 @@ if(1):
             # plt.plot(tempArray,chiSqAmp, linewidth=2,linestyle='--',color='grey')
             # cbar = plt.colorbar()#(pad=0.)
             # cbar.set_label('log($\widetilde{\chi}^{2}}$)')
-            contourSet1 = plt.contour(X,Y,chiSqMatrix,chiSqMin+1.0,colors='yellow')
-            contourSet2 = plt.contour(X,Y,chiSqMatrix,chiSqMin+2.3,colors='orange')
-            contourSet3 = plt.contour(X,Y,chiSqMatrix,chiSqMin+4.6,colors='red')
+            contourSet1 = plt.contour(X,Y,chiSqMatrix,[chiSqMin+1.0],colors='yellow')
+            contourSet2 = plt.contour(X,Y,chiSqMatrix,[chiSqMin+2.3],colors='orange')
+            contourSet3 = plt.contour(X,Y,chiSqMatrix,[chiSqMin+4.6],colors='red')
             labels = ["$\widetilde{\chi}^{2}_{min} + 1.0$ (25%)", "$\widetilde{\chi}^{2}_{min} + 2.3$ (68%)","$\widetilde{\chi}^{2}_{min} + 4.6$ (95%)", "T$_{hot}$ = %i$\pm$%i keV\nE$_{hot}$ = %i$\pm$%i J"%(bestTemp,np.ceil(tempErr),ampFrac,np.ceil(ampErr))]
             h1,l1 = contourSet1.legend_elements()
             h2,l2 = contourSet2.legend_elements()
