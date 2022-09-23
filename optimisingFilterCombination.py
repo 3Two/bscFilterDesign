@@ -148,7 +148,7 @@ if(1):
     normed   = False
     plotting = True
 
-    fileName = 'TAW_v1'
+    fileName = 'TAW_v2'
     figName  = fileName+'.png'
     if(hybrid):
         txtName = fileName+'_hybrid.txt'
